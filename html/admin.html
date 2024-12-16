@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Admin Panel - Recipes</title>
+    <link rel="stylesheet" href="../css/admin.css" />
+  </head>
+  <body>
+    <header>
+      <h1>Admin Panel - Manage Recipes</h1>
+      <a href="./admin.html" class="home-link">Go To Recipes</a>
+      <a href="./order.html" class="home-link">Go To All Orders</a>
+    </header>
+
+    <div id="admin-container">
+      <section id="recipes-section">
+        <h2>All Recipes</h2>
+        <div id="recipe-cards-container">
+          <!-- Recipe cards will be dynamically generated here -->
+        </div>
+      </section>
+
+      <section id="add-recipe-section">
+        <h2 id="form-title">Add New Recipe</h2>
+        <form id="add-recipe-form">
+          <label for="name">Recipe Name</label>
+          <input type="text" id="name" required />
+
+          <label for="category">Category</label>
+          <select id="category" required>
+            <option value="breakfast">Breakfast</option>
+            <option value="lunch">Lunch</option>
+            <option value="dinner">Dinner</option>
+            <option value="snacks">Snacks</option>
+          </select>
+
+          <label for="price">Price</label>
+          <input type="number" id="price" required step="0.01" />
+
+          <label for="image_url">Image URL</label>
+          <input type="text" id="image_url" required />
+
+          <button type="submit">Add Recipe</button>
+        </form>
+      </section>
+    </div>
+
+    <script src="../js/admin.js"></script>
+  </body>
+</html>
