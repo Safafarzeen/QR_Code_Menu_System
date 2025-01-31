@@ -44,7 +44,7 @@ document.addEventListener("DOMContentLoaded", function () {
         renderCartItems();
         if (cart.length === 0) {
             setTimeout(() => {
-                window.location.href = '../menu.html'; // Redirect to menu page when cart is empty
+                window.location.href = 'menu.html'; // Redirect to menu page when cart is empty
             }, 1000);
         }
     };
