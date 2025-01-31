@@ -42,11 +42,6 @@ document.addEventListener("DOMContentLoaded", function () {
     const updateCart = () => {
         localStorage.setItem('cart', JSON.stringify(cart));
         renderCartItems();
-        if (cart.length === 0) {
-            setTimeout(() => {
-                window.location.href = 'menu.html'; // Redirect to menu page when cart is empty
-            }, 1000);
-        }
     };
 
     // Function to update the quantity of an item or remove it if quantity reaches zero
