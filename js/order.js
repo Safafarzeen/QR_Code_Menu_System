@@ -1,5 +1,10 @@
 let ordersData = [];
+const storedUser = JSON.parse(localStorage.getItem("token"));
 
+if (!storedUser) {
+    alert("Unauthorized! Please login first.");
+    window.location.href = "login.html"; // Redirect to login page
+}
 // Function to fetch orders from API
 async function fetchOrders() {
   try {

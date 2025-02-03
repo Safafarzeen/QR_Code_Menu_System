@@ -45,24 +45,22 @@ document.addEventListener("DOMContentLoaded", function () {
     };
 
     // Function to update the quantity of an item or remove it if quantity reaches zero
-    
     const updateQuantity = (recipeId, change) => {
-    const itemIndex = cart.findIndex(item => item.recipe_id === recipeId);
-    if (itemIndex !== -1) {
-        cart[itemIndex].quantity += change;
+        const itemIndex = cart.findIndex(item => item.recipe_id === recipeId);
+        if (itemIndex !== -1) {
+            cart[itemIndex].quantity += change;
 
-        if (cart[itemIndex].quantity < 1) {
-            // Store item name before removing it
-            const itemName = cart[itemIndex].name;
-            cart.splice(itemIndex, 1);
-            showToast(`${itemName} has been removed from your cart!`, 'info'); // Use stored name
-        } else {
-            showToast(`${cart[itemIndex].name} quantity updated. New Quantity: ${cart[itemIndex].quantity}`, 'info');
+            if (cart[itemIndex].quantity < 1) {
+                // Remove item if quantity is less than 1
+                cart.splice(itemIndex, 1);
+                showToast(`${cart[itemIndex].name} has been removed from your cart!`, 'info'); // Show toast when item is removed
+            } else {
+                showToast(`${cart[itemIndex].name} quantity updated. New Quantity: ${cart[itemIndex].quantity}`, 'info'); // Show toast when quantity is updated
+            }
+
+            updateCart(); // Update the cart display
         }
-
-        updateCart(); // Update the cart display
-    }
-};
+    };
 
     // Function to place the order
     const placeOrder = async () => {

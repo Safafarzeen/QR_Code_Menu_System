@@ -1,4 +1,10 @@
 // Store the loaded recipes globally
+const storedUser = JSON.parse(localStorage.getItem("token"));
+
+if (!storedUser) {
+    alert("Unauthorized! Please login first.");
+    window.location.href = "login.html"; // Redirect to login page
+}
 let recipesData = [];
 
 // Variables for the form inputs
