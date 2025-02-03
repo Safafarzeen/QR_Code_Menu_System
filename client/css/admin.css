@@ -1,0 +1,247 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+* {
+  font-family: "Poppins", sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f8f8f8;
+  background: url('https://img.freepik.com/premium-photo/pancakes-with-banana-nuts-honey-cup-coffee-black-background_73558-3017.jpg?ga=GA1.1.148285426.1733661514&semt=ais_hybrid');
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+header {
+  background: rgba(255, 255, 255, 0.1);
+  color: #201e1e;
+  padding: 20px;
+  text-align: center;
+  backdrop-filter: blur(15px);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  border-bottom: 2px solid rgba(255, 255, 255, 0.3);
+}
+
+.home-link {
+  text-decoration: none;
+  color: #899499;
+  font-weight: bold;
+  margin-top: 10px;
+  display: inline-block;
+  margin: 0px 20px;
+}
+
+#admin-container {
+  display: flex;
+  justify-content: space-between;
+  padding: 20px;
+  flex-wrap: wrap;
+}
+
+#recipes-section {
+  width: 67%;
+  color: white;
+}
+
+#add-recipe-section {
+  width: 30%;
+  padding: 10px 10px;
+  height: fit-content;
+  background: rgba(255, 255, 255, 0.1);
+  padding: 20px;
+  backdrop-filter: blur(15px);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  border-bottom: 2px solid rgba(255, 255, 255, 0.3);
+  border-radius: 10px;
+  color: white;
+}
+
+#recipe-cards-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  max-height: 500px;
+  overflow-y: auto;
+  padding-right: 10px;
+}
+
+.recipe-card {
+  width: 200px;
+  height: 300px;
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  position: relative;
+  text-align: center;
+  transition: transform 0.3s;
+}
+
+.recipe-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.recipe-card .details {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  color: white;
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 10px;
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.recipe-card:hover .details {
+  display: flex;
+  opacity: 1;
+}
+
+.recipe-card:hover {
+  transform: translateY(-10px);
+}
+
+.recipe-card .details h3 {
+  font-size: 1.2rem;
+  margin: 10px 0;
+}
+
+.recipe-card .details .price {
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.edit-delete-buttons {
+  display: flex;
+  gap: 5px;
+}
+
+.edit-delete-buttons button {
+  background-color: #ff5722;
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  cursor: pointer;
+}
+
+#add-recipe-form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+#add-recipe-form input,
+#add-recipe-form select {
+  padding: 10px;
+  font-size: 1rem;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  background-color: lightgrey;
+  color: black;
+}
+
+#add-recipe-form button {
+  background-color: #2e7d32;
+  color: white;
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+#add-recipe-form button:hover {
+  background-color: #1b5e20;
+}
+
+/* Mobile Responsiveness */
+@media (max-width: 768px) {
+  #admin-container {
+    flex-direction: column;
+    align-items: center;
+    padding: 10px;
+  }
+
+  #recipes-section {
+    width: 100%;
+  }
+
+  #add-recipe-section {
+    width: 100%;
+    margin-top: 20px;
+  }
+
+  .recipe-card {
+    width: 100%;
+    max-width: 300px;
+    height: auto;
+  }
+
+  #recipe-cards-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 20px;
+    padding-right: 0;
+  }
+
+  #add-recipe-form input,
+  #add-recipe-form select {
+    width: 100%;
+  }
+
+  header {
+    padding: 15px;
+    font-size: 1.5rem;
+  }
+
+  .home-link {
+    font-size: 0.9rem;
+    margin-top: 15px;
+  }
+}
+
+@media (max-width: 480px) {
+  .home-link {
+    font-size: 0.8rem;
+    margin-top: 10px;
+  }
+
+  header {
+    font-size: 1.3rem;
+  }
+
+  #add-recipe-form input,
+  #add-recipe-form select {
+    font-size: 0.9rem;
+  }
+
+  .recipe-card {
+    width: 100%;
+    max-width: 280px;
+  }
+
+  #recipe-cards-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-right: 0;
+  }
+
+  #add-recipe-section {
+    padding: 15px;
+  }
+
+  #add-recipe-form button {
+    padding: 8px;
+    font-size: 0.9rem;
+  }
+}
