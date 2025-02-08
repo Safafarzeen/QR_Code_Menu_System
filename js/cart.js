@@ -11,6 +11,12 @@ document.addEventListener("DOMContentLoaded", function () {
         cartItemsContainer.innerHTML = ''; // Clear previous items
         let totalPrice = 0;
 
+        if (cart.length === 0) {  // CHANGES MADE HERE
+            cartItemsContainer.innerHTML = `<p>Your cart is empty.</p>`; // CHANGES MADE HERE
+            totalPriceElement.innerHTML = `Total Price: &#8377; 0`; // CHANGES MADE HERE
+            return; // CHANGES MADE HERE
+        }
+
         cart.forEach(item => {
             const cartItem = document.createElement('div');
             cartItem.classList.add('cart-item');
@@ -51,11 +57,11 @@ document.addEventListener("DOMContentLoaded", function () {
             cart[itemIndex].quantity += change;
 
             if (cart[itemIndex].quantity < 1) {
-                // Remove item if quantity is less than 1
-                cart.splice(itemIndex, 1);
-                showToast(`${cart[itemIndex].name} has been removed from your cart!`, 'info'); // Show toast when item is removed
+                const removedItemName = cart[itemIndex].name; // CHANGES MADE HERE
+                cart.splice(itemIndex, 1); // Remove item from cart
+                showToast(`${removedItemName} has been removed from your cart!`, 'info'); // CHANGES MADE HERE
             } else {
-                showToast(`${cart[itemIndex].name} quantity updated. New Quantity: ${cart[itemIndex].quantity}`, 'info'); // Show toast when quantity is updated
+                showToast(`${cart[itemIndex].name} quantity updated. New Quantity: ${cart[itemIndex].quantity}`, 'info');
             }
 
             updateCart(); // Update the cart display
@@ -65,11 +71,10 @@ document.addEventListener("DOMContentLoaded", function () {
     // Function to place the order
     const placeOrder = async () => {
         if (cart.length === 0) {
-            showToast("Your cart is empty!", 'error'); // Show error toast when cart is empty
+            showToast("Your cart is empty!", 'error');
             return;
         }
 
-        // Prepare order data
         const orderData = {
             total_price: cart.reduce((total, item) => total + (item.price * item.quantity), 0),
             items: cart.map(item => ({
@@ -80,7 +85,6 @@ document.addEventListener("DOMContentLoaded", function () {
         };
 
         try {
-            // Send order data to backend
             const response = await fetch('https://rntjlq4b-3000.inc1.devtunnels.ms/orders', {
                 method: 'POST',
                 headers: {
@@ -92,17 +96,11 @@ document.addEventListener("DOMContentLoaded", function () {
             const result = await response.json();
             if (response.ok) {
                 console.log('Order placed successfully:', result);
-
-                // Show success message using toast notification
                 showToast("Your order has been placed successfully!", 'success');
-
-                // Clear the cart in localStorage
                 localStorage.removeItem('cart');
-
-                // Redirect to the home page (index.html) after the success message
                 setTimeout(() => {
-                    window.location.href = '../index.html'; // Adjust this path to where you want the user to go
-                }, 1000); // Wait for the toast to be seen before redirecting
+                    window.location.href = '../index.html';
+                }, 1000);
             } else {
                 console.error('Failed to place order:', result);
                 showToast('Failed to place order', 'error');
@@ -117,30 +115,28 @@ document.addEventListener("DOMContentLoaded", function () {
     const showToast = (message, type) => {
         const toastContainer = document.getElementById('toast-container');
         const toast = document.createElement('div');
-        
+
         toast.classList.add('toast');
-        toast.classList.add(type);  // Add 'success', 'error' or 'info' class for different styles
+        toast.classList.add(type);
         toast.innerText = message;
 
-        // Append the toast to the container
         toastContainer.appendChild(toast);
 
-        // Remove the toast after a few seconds
         setTimeout(() => {
             toast.remove();
-        }, 1000); // Toast will disappear after 2 seconds
+        }, 1000);
     };
 
     // Add event listeners for quantity buttons
     cartItemsContainer.addEventListener('click', (event) => {
         if (event.target.classList.contains('decrease')) {
             const recipeId = event.target.dataset.id;
-            updateQuantity(recipeId, -1); // Decrease quantity
+            updateQuantity(recipeId, -1);
         }
 
         if (event.target.classList.contains('increase')) {
             const recipeId = event.target.dataset.id;
-            updateQuantity(recipeId, 1); // Increase quantity
+            updateQuantity(recipeId, 1);
         }
     });
 
