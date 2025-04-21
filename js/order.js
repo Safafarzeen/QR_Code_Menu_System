@@ -5,6 +5,7 @@ if (!storedUser) {
     alert("Unauthorized! Please login first.");
     window.location.href = "login.html"; // Redirect to login page
 }
+
 // Function to fetch orders from API
 async function fetchOrders() {
   try {
@@ -38,16 +39,17 @@ function renderOrdersTable(orders) {
   });
 }
 
-// Function to show the order details in a modal
+// ✅ Function to show the order details in a modal (FIXED)
 async function viewOrderDetails(orderId) {
   try {
     const response = await fetch(`https://6tt32vsz-3000.inc1.devtunnels.ms/orders/${orderId}`);
     const data = await response.json();
 
-    if (data && Array.isArray(data)) {
-      renderOrderDetailsModal(data);
+    // ✅ Check if data.items exists and is an array
+    if (data && Array.isArray(data.items)) {
+      renderOrderDetailsModal(data.items);
     } else {
-      console.error("Failed to fetch order details:", data.error);
+      console.error("Failed to fetch order details:", data.error || "Invalid data format");
     }
   } catch (error) {
     console.error("Error fetching order details:", error);
