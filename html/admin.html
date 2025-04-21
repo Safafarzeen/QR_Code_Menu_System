@@ -11,7 +11,9 @@
       <h1>Admin Panel - Manage Recipes</h1>
       <a href="./admin.html" class="home-link">Go To Recipes</a>
       <a href="./order.html" class="home-link">Go To All Orders</a>
+      <button id="logout-btn" class="logout-btn">Logout</button>
     </header>
+
     <div id="admin-container">
       <section id="recipes-section">
         <h2>All Recipes</h2>
@@ -46,5 +48,14 @@
     </div>
 
     <script src="../js/admin.js"></script>
+    <script>
+      document.getElementById("logout-btn").addEventListener("click", function () {
+        // Optional: Clear session storage or authentication token
+        // sessionStorage.clear();
+        // localStorage.removeItem("authToken");
+
+        window.location.href = "login.html"; // Redirect to login page
+      });
+    </script>
   </body>
 </html>

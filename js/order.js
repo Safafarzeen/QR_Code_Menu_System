@@ -8,7 +8,7 @@ if (!storedUser) {
 // Function to fetch orders from API
 async function fetchOrders() {
   try {
-    const response = await fetch("https://gddq60js-3000.inc1.devtunnels.ms/orders");
+    const response = await fetch("https://6tt32vsz-3000.inc1.devtunnels.ms/orders");
     const data = await response.json();
     if (data && Array.isArray(data)) {
       ordersData = data;
@@ -41,7 +41,7 @@ function renderOrdersTable(orders) {
 // Function to show the order details in a modal
 async function viewOrderDetails(orderId) {
   try {
-    const response = await fetch(`https://gddq60js-3000.inc1.devtunnels.ms/orders/${orderId}`);
+    const response = await fetch(`https://6tt32vsz-3000.inc1.devtunnels.ms/orders/${orderId}`);
     const data = await response.json();
 
     if (data && Array.isArray(data)) {

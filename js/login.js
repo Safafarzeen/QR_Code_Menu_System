@@ -9,7 +9,7 @@ async function login() {
     const email = document.getElementById("login-email").value;
     const password = document.getElementById("login-password").value;
 
-    const res = await fetch("https://gddq60js-3000.inc1.devtunnels.ms/login", {
+    const res = await fetch("https://6tt32vsz-3000.inc1.devtunnels.ms/login", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ email, password }),
@@ -32,7 +32,7 @@ async function signup() {
     const email = document.getElementById("signup-email").value;
     const password = document.getElementById("signup-password").value;
 
-    const res = await fetch("https://gddq60js-3000.inc1.devtunnels.ms/signup", {  // Updated URL
+    const res = await fetch("https://6tt32vsz-3000.inc1.devtunnels.ms/signup", {  // Updated URL
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ name, email, password }),

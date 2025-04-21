@@ -32,6 +32,23 @@ header {
   display: inline-block;
   margin: 0px 20px;
 }
+#logout-btn {
+  text-decoration: none;
+  color: #899499;
+  font-weight: bold;
+  margin-top: 10px;
+  display: inline-block;
+  margin: 0px 20px;
+  padding: 10px;
+  border-radius: 25px;
+  border: none;
+  background-color: black;
+}
+
+
+
+
+
 
 #admin-container {
   display: flex;
@@ -41,7 +58,7 @@ header {
 }
 
 #recipes-section {
-  width: 67%;
+  width: 60%;
   color: white;
 }
 
