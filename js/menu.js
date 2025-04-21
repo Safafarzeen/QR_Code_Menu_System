@@ -71,7 +71,7 @@ document.addEventListener("DOMContentLoaded", function () {
     // Fetch recipes from the backend
     const fetchRecipes = async () => {
         try {
-            const response = await fetch('https://rntjlq4b-3000.inc1.devtunnels.ms/recipes/menu');
+            const response = await fetch('https://gddq60js-3000.inc1.devtunnels.ms/recipes/menu');
             const data = await response.json();
             if (data.success) {
                 recipes = data.recipes;
