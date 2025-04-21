@@ -85,7 +85,7 @@ document.addEventListener("DOMContentLoaded", function () {
         };
 
         try {
-            const response = await fetch('https://rntjlq4b-3000.inc1.devtunnels.ms/orders', {
+            const response = await fetch('https://gddq60js-3000.inc1.devtunnels.ms/orders', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
