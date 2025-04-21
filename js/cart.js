@@ -11,10 +11,10 @@ document.addEventListener("DOMContentLoaded", function () {
         cartItemsContainer.innerHTML = ''; // Clear previous items
         let totalPrice = 0;
 
-        if (cart.length === 0) {  // CHANGES MADE HERE
-            cartItemsContainer.innerHTML = `<p>Your cart is empty.</p>`; // CHANGES MADE HERE
-            totalPriceElement.innerHTML = `Total Price: &#8377; 0`; // CHANGES MADE HERE
-            return; // CHANGES MADE HERE
+        if (cart.length === 0) {
+            cartItemsContainer.innerHTML = `<p>Your cart is empty.</p>`;
+            totalPriceElement.innerHTML = `Total Price: &#8377; 0`;
+            return;
         }
 
         cart.forEach(item => {
@@ -57,21 +57,27 @@ document.addEventListener("DOMContentLoaded", function () {
             cart[itemIndex].quantity += change;
 
             if (cart[itemIndex].quantity < 1) {
-                const removedItemName = cart[itemIndex].name; // CHANGES MADE HERE
-                cart.splice(itemIndex, 1); // Remove item from cart
-                showToast(`${removedItemName} has been removed from your cart!`, 'info'); // CHANGES MADE HERE
+                const removedItemName = cart[itemIndex].name;
+                cart.splice(itemIndex, 1);
+                showToast(`${removedItemName} has been removed from your cart!`, 'info');
             } else {
                 showToast(`${cart[itemIndex].name} quantity updated. New Quantity: ${cart[itemIndex].quantity}`, 'info');
             }
 
-            updateCart(); // Update the cart display
+            updateCart();
         }
     };
 
-    // Function to place the order
+    // ✅ Function to place the order (with token included)
     const placeOrder = async () => {
         if (cart.length === 0) {
             showToast("Your cart is empty!", 'error');
+            return;
+        }
+
+        const token = localStorage.getItem('token');
+        if (!token) {
+            showToast("You must be logged in to place an order.", 'error');
             return;
         }
 
@@ -88,7 +94,8 @@ document.addEventListener("DOMContentLoaded", function () {
             const response = await fetch('https://gddq60js-3000.inc1.devtunnels.ms/orders', {
                 method: 'POST',
                 headers: {
-                    'Content-Type': 'application/json'
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${token}` // ✅ Added token
                 },
                 body: JSON.stringify(orderData)
             });
@@ -103,7 +110,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 }, 1000);
             } else {
                 console.error('Failed to place order:', result);
-                showToast('Failed to place order', 'error');
+                showToast(result.error || 'Failed to place order', 'error');
             }
         } catch (error) {
             console.error('Error placing order:', error);
