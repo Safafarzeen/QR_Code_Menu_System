@@ -21,7 +21,7 @@ let editingRecipeId = null;  // Store the ID of the recipe being edited
 // Function to fetch recipes and store them in the global array
 async function fetchRecipes() {
     try {
-        const response = await fetch("https://rntjlq4b-3000.inc1.devtunnels.ms/recipes/menu");
+        const response = await fetch("https://gddq60js-3000.inc1.devtunnels.ms/recipes/menu");
         const data = await response.json();
         if (data.success) {
             recipesData = data.recipes; // Store the fetched recipes in the global array
@@ -59,7 +59,7 @@ function renderRecipeCards(recipes) {
 
 async function deleteRecipe(id) {
     try {
-        const response = await fetch(`https://rntjlq4b-3000.inc1.devtunnels.ms/recipes/${id}`, {
+        const response = await fetch(`https://gddq60js-3000.inc1.devtunnels.ms/recipes/${id}`, {
             method: "DELETE",
         });
         const data = await response.json();
@@ -127,7 +127,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 }
             } else {
                 // Add a new recipe
-                response = await fetch("https://rntjlq4b-3000.inc1.devtunnels.ms/recipes", {
+                response = await fetch("https://gddq60js-3000.inc1.devtunnels.ms/recipes", {
                     method: "POST",
                     headers: {
                         "Content-Type": "application/json",
