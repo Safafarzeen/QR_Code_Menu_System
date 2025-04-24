@@ -11,6 +11,7 @@ async function fetchOrders() {
   try {
     const response = await fetch("https://6tt32vsz-3000.inc1.devtunnels.ms/orders");
     const data = await response.json();
+      console.log(data)
     if (data && Array.isArray(data)) {
       ordersData = data;
       renderOrdersTable(data);
