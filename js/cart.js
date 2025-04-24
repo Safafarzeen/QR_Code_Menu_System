@@ -95,7 +95,6 @@ document.addEventListener("DOMContentLoaded", function () {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
-                    'Authorization': `Bearer ${token}` // ✅ Added token
                 },
                 body: JSON.stringify(orderData)
             });
