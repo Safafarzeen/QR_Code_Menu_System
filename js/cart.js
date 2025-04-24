@@ -75,12 +75,6 @@ document.addEventListener("DOMContentLoaded", function () {
             return;
         }
 
-        const token = localStorage.getItem('token');
-        if (!token) {
-            showToast("You must be logged in to place an order.", 'error');
-            return;
-        }
-
         const orderData = {
             total_price: cart.reduce((total, item) => total + (item.price * item.quantity), 0),
             items: cart.map(item => ({
