@@ -45,12 +45,11 @@ async function viewOrderDetails(orderId) {
   try {
     const response = await fetch(`https://6tt32vsz-3000.inc1.devtunnels.ms/orders/${orderId}`);
     const data = await response.json();
-
-    // ✅ Check if data.items exists and is an array
-    if (data && Array.isArray(data.items)) {
-      renderOrderDetailsModal(data.items);
+console.log(data)
+    if (data && Array.isArray(data)) {
+      renderOrderDetailsModal(data);
     } else {
-      console.error("Failed to fetch order details:", data.error || "Invalid data format");
+      console.error("Failed to fetch order details:", data.error);
     }
   } catch (error) {
     console.error("Error fetching order details:", error);
